@@ -1,2 +1,2 @@
 # Learning-Data
-Programming data and example.
+Programming data and examples.
