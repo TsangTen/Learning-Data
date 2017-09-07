@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block body %}
+<!--This template extends the layout.html template from above to display the messages.
+Note that the for loop iterates over the messages we passed in with the render_template() function.
+Notice that the form is configured to to submit to the add_entry view function and use POST as HTTP method.-->
+    {% if session.logged_in %}
+        <form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
+            <dl>
+                <dt>Title: </dt>
+                <dd><input type="text" size="30" name="title"></dd>
+                <dt>Text: </dt>
+                <dd><textarea name="text" rows="5" cols="40"></textarea> </dd>
+                <dd><input type="submit" value="Share"></dd>
+            </dl>
+        </form>
+    {% endif %}
+    <ul class="entries">
+        {% for entry in entries %}
+            <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}</li>
+        {% else %}
+            <li><em>Unbelievable. No entries here so far.</em></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
